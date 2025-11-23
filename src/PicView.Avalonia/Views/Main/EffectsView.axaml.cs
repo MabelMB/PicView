@@ -141,6 +141,27 @@ public partial class EffectsView : UserControl
             await UpdateToggleEffect(vm, config => config.OldMovie = isOldMovie);
             HideCancelBtn();
         };
+        GreyEffectToggleButton.Click += async delegate
+        {
+            vm.PicViewer.EffectConfig.Value ??= new ImageEffectConfig();
+            var isGreyEffect = GreyEffectToggleButton.IsChecked ?? false;
+            await UpdateToggleEffect(vm, config => config.GreyEffect = isGreyEffect);
+            HideCancelBtn();
+        };
+        NightVisionToggleButton.Click += async delegate
+        {
+            vm.PicViewer.EffectConfig.Value ??= new ImageEffectConfig();
+            var isNightVision = NightVisionToggleButton.IsChecked ?? false;
+            await UpdateToggleEffect(vm, config => config.NightVision = isNightVision);
+            HideCancelBtn();
+        };
+        SpringEffectToggleButton.Click += async delegate
+        {
+            vm.PicViewer.EffectConfig.Value ??= new ImageEffectConfig();
+            var isSpringEffect = SpringEffectToggleButton.IsChecked ?? false;
+            await UpdateToggleEffect(vm, config => config.SpringEffect = isSpringEffect);
+            HideCancelBtn();
+        };
     }
 
     /// <summary>
@@ -306,6 +327,9 @@ public partial class EffectsView : UserControl
         BlackAndWhiteToggleButton.IsChecked = false;
         NegativeToggleButton.IsChecked = false;
         OldMovieToggleButton.IsChecked = false;
+        GreyEffectToggleButton.IsChecked = false;
+        NightVisionToggleButton.IsChecked = false;
+        SpringEffectToggleButton.IsChecked = false;
         ContrastSlider.Value = 0;
         BrightnessSlider.Value = 0;
         PencilSketchSlider.Value = 0;
@@ -327,6 +351,9 @@ public partial class EffectsView : UserControl
         BlackAndWhiteToggleButton.IsChecked = config.BlackAndWhite;
         OldMovieToggleButton.IsChecked = config.OldMovie;
         NegativeToggleButton.IsChecked = config.Negative;
+        GreyEffectToggleButton.IsChecked = config.GreyEffect;
+        NightVisionToggleButton.IsChecked = config.NightVision;
+        SpringEffectToggleButton.IsChecked = config.SpringEffect;
         BrightnessSlider.Value = config.Brightness.ToInt32();
         ContrastSlider.Value = config.Contrast.ToInt32();
         PencilSketchSlider.Value = config.SketchStrokeWidth;
@@ -396,5 +423,8 @@ public partial class EffectsView : UserControl
         config.BlurLevel == _defaultEffectConfig.BlurLevel &&
         config.BlackAndWhite == _defaultEffectConfig.BlackAndWhite &&
         config.Negative == _defaultEffectConfig.Negative &&
-        config.OldMovie == _defaultEffectConfig.OldMovie;
+        config.OldMovie == _defaultEffectConfig.OldMovie &&
+        config.GreyEffect == _defaultEffectConfig.GreyEffect &&
+        config.NightVision == _defaultEffectConfig.NightVision &&
+        config.SpringEffect == _defaultEffectConfig.SpringEffect;
 }

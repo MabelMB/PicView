@@ -16,5 +16,11 @@ public class ImageEffectConfig
     public bool BlackAndWhite { get; set; }
     public bool OldMovie { get; set; }
     public double BlurLevel { get; set; }
-    
+
+    public bool GreyEffect { get; set; }
+
+    public bool NightVision { get; set; }
+
+    public bool SpringEffect { get; set; }
+
 }

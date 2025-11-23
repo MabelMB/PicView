@@ -70,6 +70,21 @@ public static class ImageEffectsHelper
             ApplyOldMovieEffect(magick);
         }
 
+        if(config.GreyEffect)
+        {
+            ApplyGreyEffect(magick);
+        }
+
+        if(config.NightVision)
+        {
+            ApplyNightVision(magick);
+        }
+
+        if(config.SpringEffect)
+        {
+            ApplySpringEffect(magick);
+        }
+
         if (config.SketchStrokeWidth != 0)
         {
             ApplyPencilSketch(magick, config.SketchStrokeWidth);
@@ -95,13 +110,37 @@ public static class ImageEffectsHelper
 
     private static void ApplyNegative(MagickImage magick) => magick.Negate();
 
-    private static void ApplyBlackAndWhite(MagickImage magick) => magick.Grayscale();
+    private static void ApplyBlackAndWhite(MagickImage magick)
+    {
+        magick.Grayscale();
+        magick.ContrastStretch(new Percentage(0), new Percentage(50));
+    }
 
     private static void ApplyOldMovieEffect(MagickImage magick)
     {
         magick.SepiaTone(new Percentage(80));
         magick.AddNoise(NoiseType.MultiplicativeGaussian);
         AddVerticalBands(magick);
+    }
+
+    private static void ApplyGreyEffect(MagickImage magick)
+    {
+        magick.Grayscale();
+        magick.BrightnessContrast(new Percentage(10), new Percentage(20));
+    }
+
+    private static void ApplyNightVision(MagickImage magick)
+    {
+        magick.Colorize(new MagickColor("#00FF00"), new Percentage(50));
+        magick.BrightnessContrast(new Percentage(20), new Percentage(30));
+        magick.AddNoise(NoiseType.Gaussian);
+    }
+
+    private static void ApplySpringEffect(MagickImage magick)
+    {
+        magick.Colorize(new MagickColor("#FF69B4"), new Percentage(40));
+        magick.BrightnessContrast(new Percentage(15), new Percentage(25));
+        magick.AddNoise(NoiseType.Gaussian);
     }
 
     private static void AddVerticalBands(MagickImage magick)
