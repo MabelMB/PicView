@@ -474,7 +474,8 @@
                                                Mode=OneWay}"
                         VerticalAlignment="Center" />
                 </ToggleButton>
-
+				
+				<!--  NUEVOS FILTROS :)  -->
 				<!--  Grey Effect  -->
 				<ToggleButton
                     Background="Transparent"
